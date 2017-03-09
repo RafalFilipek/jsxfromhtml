@@ -83,7 +83,7 @@ You will get:
 
 ```jsx
   <View>
-    <Text>hello </Text><Text>World</Text><Text> !</text>
+    <Text>hello </Text><Text>World</Text><Text> !</Text>
   </View>
 ```
 
