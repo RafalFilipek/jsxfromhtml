@@ -54,7 +54,7 @@ const SuperLink = (props) => {
 () => <JSXFromHTML html={html} mapElements={{ a: SuperLink }} />
 ```
 
-With `mapElements` you can map any HTML tag into custom componetn. In this example we want to use our `SuperLink` component to show profile picture next to twitter username.
+With `mapElements` you can map any HTML tag into a custom componetn. In this example we want to use our `SuperLink` component to show profile picture next to the twitter username.
 
 ### Omitting
 
@@ -69,7 +69,7 @@ const html = `<p>
 
 ### General mapping / React Native
 
-While `mapElements` is quite cool for web we have to handle all tags in native just with `Text` and `View` components. That's why there are two more props `mapInline` and `mapBlock`.
+While `mapElements` is quite cool for web we have to handle all tags in native with just `Text` and `View` components. That's why there are two more props `mapInline` and `mapBlock`.
 
 ```jsx
 const html = `<p>
@@ -87,7 +87,7 @@ You will get:
   </View>
 ```
 
-As you can see `jsxfromhtml` will wrap every text with is not inside some inline tag.
+As you can see `jsxfromhtml` will wrap every text with is not inside inline tag.
 
 ### Styling
 
@@ -110,7 +110,7 @@ const InlineElement = (props) => {
 
 ### Attributes
 
-Every html attributes will be converted into proper jsx form. So `for` -> `htmlFor`, `class` -> `className` etc. You will recieve them like regular props.
+All html attributes will be converted into proper jsx form. So `for` -> `htmlFor`, `class` -> `className` etc. You will receive them like regular props.
 
 ```jsx
 const html = `<a class="link" href="https://twitter.com/rafalfilipek" title="Rafał Filipek">rafalfilipek</a>`
@@ -133,7 +133,7 @@ const InlineElement = (props) => (
 
 We have `mapElement`, `mapInline`, `mapBlock` props.
 
-1. if `mapElements` value for tag is `false` then tag is omited.
+1. if `mapElements` value for tag is `false` then the tag is omitted.
 2. use value from `mapElements` if defined
 3. for inline elements use value from `mapInline` if defined
 4. for block elements use value from `mapBlock` if defined
@@ -141,7 +141,7 @@ We have `mapElement`, `mapInline`, `mapBlock` props.
 
 ## React Native inline
 
-There is no `display: inline` in React Native. You can't have two inline tags (like `Text`) in one line. Only solution I know is to wrap them with another `Text` component. That sucks:
+There is no `display: inline` in React Native. You can't have two inline tags (like `Text`) in one line. The only solution I know is to wrap them with another `Text` component. This sucks:
 
 ```jsx
 <span>
@@ -181,17 +181,17 @@ Thats why `jsxfromhtml` handles that for you 💥! We will group inline tags ins
 
 ## FAQ
 
-**Q: Is there any wrapper for my HTML?**
+**Q: Is there a wrapper for my HTML?**
 
 A: Yes, always a `div` tag.
 
-**Q: How plain text inside block tags is handled?**
+**Q: How is plain text handled inside block tags?**
 
 A: Text is wrapped with `span` tag.
 
-**Q: How to detect root element?**
+**Q: How do you detect a root element?**
 
-A: Root component has `data-jsx-to-html-root` prop.
+A: The root component has `data-jsx-to-html-root` prop.
 
 ## LICENSE
 
