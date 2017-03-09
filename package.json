@@ -1,0 +1,43 @@
+{
+  "name": "jsxfromhtml",
+  "version": "0.0.3",
+  "description": "Universal HTML to JSX compiler",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "jsnext:main": "src/index.js",
+  "author": "Rafał Filipek <rafal.filipek@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "format": "prettier --write --parser flow --single-quote ./src/*",
+    "flow-copy": "flow-copy-source src lib",
+    "compile": "babel -d ./lib src",
+    "clean": "rm -rf lib",
+    "build": "npm run clean && npm run compile && npm run flow-copy",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {
+    "htmlparser2": "^3.9.2",
+    "stream": "^0.0.2"
+  },
+  "peerDependencies": {
+    "react": "",
+    "react-native": ""
+  },
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-eslint": "^7.1.1",
+    "babel-preset-env": "^1.2.1",
+    "eslint": "^3.17.1",
+    "eslint-plugin-react": "^6.10.0",
+    "flow-bin": "^0.41.0",
+    "flow-copy-source": "^1.1.0",
+    "jest": "^19.0.2",
+    "nwb": "^0.15.6",
+    "prettier": "^0.21.0",
+    "publish-please": "^2.2.0"
+  }
+}
