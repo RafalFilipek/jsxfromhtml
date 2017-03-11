@@ -31,6 +31,9 @@ const step: StepFunc = (dom, index, parent, getTag) => {
   }
   if (dom.type === 'tag' || dom.type === 'script' || dom.type === 'style') {
     const Component = getTag(dom.name);
+    if (Component === null) {
+      return null;
+    }
     if (selfClosingElements.indexOf(dom.name) !== -1) {
       return <Component data-tag={dom.name} key={index} {...dom.attribs} />;
     }
