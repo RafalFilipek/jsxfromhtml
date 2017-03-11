@@ -1,7 +1,7 @@
 # How to run?
 
 ```
-yarn add -g nwb
+yarn global add nwb
 
 react run index.js --install
 ```
