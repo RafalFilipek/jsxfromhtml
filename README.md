@@ -2,6 +2,10 @@
 
 With `jsxfromhtml` you can easily convert html strings into React / React Native / Preact / Inferno (you know, JSX in general) components.
 
+## Demo
+
+Like always on [now](https://now.sh) :) - [**jsxfromhtml.now.sh**](https://jsxfromhtml.now.sh/)
+
 ## Installation
 
 ```
