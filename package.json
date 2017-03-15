@@ -1,6 +1,6 @@
 {
   "name": "jsxfromhtml",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Universal HTML to JSX compiler",
   "main": "lib/index.js",
   "module": "src/index.js",
@@ -22,10 +22,6 @@
   "dependencies": {
     "htmlparser2": "^3.9.2",
     "stream": "^0.0.2"
-  },
-  "peerDependencies": {
-    "react": "",
-    "react-native": ""
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
