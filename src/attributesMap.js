@@ -115,6 +115,7 @@ const map: {
   'vert-adv-y': 'vertAdvY',
   'vert-origin-x': 'vertOriginX',
   'vert-origin-y': 'vertOriginY',
+  viewbox: 'viewBox',
   'word-spacing': 'wordSpacing',
   'writing-mode': 'writingMode',
   'x-height': 'xHeight'
