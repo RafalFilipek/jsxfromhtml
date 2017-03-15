@@ -16,6 +16,16 @@ yarn add jsxfromhtml
 npm install -S jsxfromhtml
 ```
 
+Also for React-Native you have to install some Node specific modules
+
+```
+yarn add stream buffer events
+
+// or
+
+npm install -S stream buffer events
+```
+
 ## Usage
 
 ### Web
