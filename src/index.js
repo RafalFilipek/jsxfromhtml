@@ -9,7 +9,7 @@ type Props = {
   mapElements?: { [key: string]: any },
   mapInline?: string | Function,
   mapBlock?: string | Function,
-  children?: Function | null
+  children?: Function | null,
 };
 
 class JsxHtml extends PureComponent {
@@ -22,7 +22,7 @@ class JsxHtml extends PureComponent {
     mapElements: PropTypes.object,
     mapInline: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     mapBlock: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    children: PropTypes.func
+    children: PropTypes.func,
   };
 
   static defaultProps: Props = {
@@ -30,12 +30,15 @@ class JsxHtml extends PureComponent {
     mapElements: {},
     mapInline: '',
     mapBlock: '',
-    children: null
+    children: null,
   };
 
   state = {};
 
+  mounted = false;
+
   componentDidMount() {
+    this.mounted = true;
     this.setContent();
   }
 
@@ -45,6 +48,10 @@ class JsxHtml extends PureComponent {
     }
   }
 
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
   setContent() {
     convert(
       this.props.html,
@@ -52,7 +59,9 @@ class JsxHtml extends PureComponent {
       this.props.mapInline,
       this.props.mapBlock
     ).then(content => {
-      this.setState({ content });
+      if (this.mounted) {
+        this.setState({ content });
+      }
     });
   }
 
