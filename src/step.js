@@ -15,7 +15,7 @@ export type DOMElement = {
   data?: string,
   attribs: { [key: string]: any },
   children: DOMElement[],
-  parent?: DOMElement
+  parent?: DOMElement,
 };
 
 type StepFunc = (
@@ -35,7 +35,13 @@ const step: StepFunc = (dom, index, parent, getTag) => {
       return null;
     }
     if (selfClosingElements.indexOf(dom.name) !== -1) {
-      return <Component data-tag={dom.name} key={index} {...dom.attribs} />;
+      return (
+        <Component
+          data-tag={dom.name}
+          key={index}
+          {...mapAttributes(dom.attribs)}
+        />
+      );
     }
     const isParentBlock = parent && inlineElements.indexOf(parent.name) === -1;
     const children = isParentBlock
