@@ -1,4 +1,3 @@
-
 export default {
   twitter: `<div>
   <p>
@@ -9,5 +8,5 @@ export default {
   </p>
 </div>`,
   omitting: '<p><span>hello</span> <strong>bla bla</strong> </span>world!</span></p>',
-  simple: '<div><p><span>Just HTML converted into JSX</span></p></div>'
+  simple: '<div><p><span>Just HTML converted into JSX</span></p></div>',
 };
