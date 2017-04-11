@@ -1,6 +1,6 @@
 {
   "name": "jsxfromhtml",
-  "version": "0.0.8",
+  "version": "1.0.0",
   "description": "Universal HTML to JSX compiler",
   "main": "lib/index.js",
   "module": "src/index.js",
