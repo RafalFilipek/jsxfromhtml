@@ -15,6 +15,7 @@
     "compile": "babel -d ./lib src",
     "clean": "rm -rf lib",
     "build": "npm run clean && npm run compile && npm run flow-copy",
+    "precommit": "lint-staged",
     "prepublish": "npm run build"
   },
   "dependencies": {
@@ -29,9 +30,17 @@
     "eslint-plugin-react": "^6.10.0",
     "flow-bin": "^0.41.0",
     "flow-copy-source": "^1.1.0",
+    "husky": "^0.13.2",
     "jest": "^19.0.2",
+    "lint-staged": "^3.4.0",
     "nwb": "^0.15.6",
     "prettier": "^0.21.0",
     "publish-please": "^2.2.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write --parser flow --single-quote ./src/*",
+      "git add"
+    ]
   }
 }
