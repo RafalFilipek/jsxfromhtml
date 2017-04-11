@@ -1,10 +1,8 @@
 {
   "name": "jsxfromhtml",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Universal HTML to JSX compiler",
   "main": "lib/index.js",
-  "module": "src/index.js",
-  "jsnext:main": "src/index.js",
   "author": "Rafał Filipek <rafal.filipek@gmail.com>",
   "license": "MIT",
   "files": [
