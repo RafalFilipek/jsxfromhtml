@@ -11,21 +11,11 @@ type ConvertFunc = (
   mapElements?: ElementsMap,
   mapInline?: string | Function,
   mapBlock?: string | Function
-) => Promise<*>;
+) => any;
 
 const convert: ConvertFunc = (html, mapElements, mapInline, mapBlock) => {
   const getTag = createGetTagFunction(mapElements, mapInline, mapBlock);
-
-  return new Promise((resolve, reject) => {
-    textToDOM(html)
-      .then(dom => {
-        try {
-          resolve(toJSX(dom, getTag));
-        } catch (e) {
-          reject(e);
-        }
-      })
-      .catch(reject);
-  });
+  const dom = textToDOM(html);
+  return toJSX(dom, getTag);
 };
 export default convert;

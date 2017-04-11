@@ -2,14 +2,12 @@
 
 import { Parser, DomHandler } from 'htmlparser2';
 
-const textToDOM = (html: string): Promise<*> =>
-  new Promise((resolve, reject) => {
-    const handler = new DomHandler((error, dom) => {
-      error ? reject(error) : resolve(dom);
-    });
-    const parser = new Parser(handler);
-    parser.write(html);
-    parser.done();
-  });
+const textToDOM = (html: string): any => {
+  const handler = new DomHandler();
+  const parser = new Parser(handler);
+  parser.write(html);
+  parser.done();
+  return handler.dom;
+};
 
 export default textToDOM;

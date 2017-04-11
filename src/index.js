@@ -53,16 +53,15 @@ class JsxHtml extends PureComponent {
   }
 
   setContent() {
-    convert(
+    const content = convert(
       this.props.html,
       this.props.mapElements,
       this.props.mapInline,
       this.props.mapBlock
-    ).then(content => {
-      if (this.mounted) {
-        this.setState({ content });
-      }
-    });
+    );
+    if (this.mounted) {
+      this.setState({ content });
+    }
   }
 
   render() {
