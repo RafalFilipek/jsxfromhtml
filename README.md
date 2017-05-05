@@ -1,5 +1,7 @@
 # JSXFromHTML
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/RafalFilipek/jsxfromhtml.svg)](https://greenkeeper.io/)
+
 With `jsxfromhtml` you can easily convert html strings into React / React Native / Preact / Inferno (you know, JSX in general) components.
 
 ## Demo
