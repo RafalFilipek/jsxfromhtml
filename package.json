@@ -4,22 +4,22 @@
     "type" : "git",
     "url" : "https://github.com/RafalFilipek/jsxfromhtml.git"
   },
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Universal HTML to JSX compiler",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "author": "Rafał Filipek <rafal.filipek@gmail.com>",
   "contributors": [
     "Tyler Young <young@clearpath.org>"
   ],
   "license": "MIT",
   "files": [
-    "lib"
+    "dist"
   ],
   "scripts": {
     "format": "prettier --write --parser flow --single-quote ./src/*",
-    "flow-copy": "flow-copy-source src lib",
-    "compile": "babel -d ./lib src --source-maps",
-    "clean": "rimraf lib",
+    "flow-copy": "flow-copy-source src dist",
+    "compile": "babel -d ./dist src --source-maps",
+    "clean": "rimraf dist",
     "build": "npm run clean && npm run compile && npm run flow-copy",
     "precommit": "lint-staged",
     "prepublish": "npm run build",

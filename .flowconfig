@@ -1,6 +1,6 @@
 [ignore]
 .*/node_modules/nwb/.*
-<PROJECT_ROOT>/lib/.*
+<PROJECT_ROOT>/dist/.*
 
 [include]
 
