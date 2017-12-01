@@ -15,6 +15,11 @@
   "files": [
     "dist"
   ],
+  "directories": {
+    "lib": "dist",
+    "example": "demo",
+    "test": "tests"
+  },
   "scripts": {
     "format": "prettier --write --parser flow --single-quote ./src/*",
     "flow-copy": "flow-copy-source src dist",
