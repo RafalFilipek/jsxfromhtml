@@ -11,7 +11,7 @@ const toJSX = (dom: DOMElement, getTag: GetTagFunc) => {
     return <Component data-jsx-to-html-root />;
   }
   const rootNode = {
-    name: 'div',
+    name: 'span',
     type: 'tag',
     children: dom,
     attribs: { 'data-jsx-to-html-root': true }
@@ -19,7 +19,7 @@ const toJSX = (dom: DOMElement, getTag: GetTagFunc) => {
   return step(
     rootNode,
     0,
-    { name: 'div', type: 'tag', data: '', children: [rootNode], attribs: {} },
+    { name: 'span', type: 'tag', data: '', children: [rootNode], attribs: {} },
     getTag
   );
 };

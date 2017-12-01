@@ -1,6 +1,7 @@
 // @flow
 
 import attributesMap from './attributesMap';
+import parseInlineStyle from './parseInlineStyle';
 
 type Attrs = { [key: string]: string };
 
@@ -10,7 +11,8 @@ const mapAttributes: MapAttributesFunc = (attrs = {}) => Object.keys(
   attrs
 ).reduce(
   (memo, key) => {
-    memo[attributesMap[key] || key] = attrs[key];
+    if (key === 'style') memo['style'] = parseInlineStyle(attrs['style']);
+    else memo[attributesMap[key] || key] = attrs[key];
     return memo;
   },
   {}

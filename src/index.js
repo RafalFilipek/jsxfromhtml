@@ -1,6 +1,8 @@
 // @flow
 
-import { PropTypes, PureComponent } from 'react';
+import PropTypes from 'prop-types';
+
+import { PureComponent } from 'react';
 
 import convert from './convert';
 
@@ -9,7 +11,7 @@ type Props = {
   mapElements?: { [key: string]: any },
   mapInline?: string | Function,
   mapBlock?: string | Function,
-  children?: Function | null,
+  children?: Function | null
 };
 
 class JsxHtml extends PureComponent {
@@ -22,7 +24,7 @@ class JsxHtml extends PureComponent {
     mapElements: PropTypes.object,
     mapInline: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     mapBlock: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    children: PropTypes.func,
+    children: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
   };
 
   static defaultProps: Props = {
@@ -30,10 +32,13 @@ class JsxHtml extends PureComponent {
     mapElements: {},
     mapInline: '',
     mapBlock: '',
-    children: null,
+    children: null
   };
 
-  state = {};
+  state = {
+    content: null,
+    setHtmlProp: false
+  };
 
   mounted = false;
 
@@ -43,7 +48,12 @@ class JsxHtml extends PureComponent {
   }
 
   componentDidUpdate(prevProps: Props) {
-    if (this.props.html !== prevProps.html) {
+    const oldHtml = JsxHtml.pickHtml(prevProps);
+    const newHtml = JsxHtml.pickHtml(this.props);
+    if (newHtml !== oldHtml) {
+      if (this.props.html && !this.state.setHtmlProp) {
+        this.setState({ setHtmlProp: true });
+      }
       this.setContent();
     }
   }
@@ -52,9 +62,20 @@ class JsxHtml extends PureComponent {
     this.mounted = false;
   }
 
+  static pickHtml(props: JsxHtml) {
+    if (props.html) {
+      return props.html;
+    }
+    if (typeof props.children === 'string') {
+      return props.children;
+    }
+    return null;
+  }
+
   setContent() {
+    const html = JsxHtml.pickHtml(this.props);
     const content = convert(
-      this.props.html,
+      html || '',
       this.props.mapElements,
       this.props.mapInline,
       this.props.mapBlock
@@ -65,10 +86,9 @@ class JsxHtml extends PureComponent {
   }
 
   render() {
-    if (typeof this.props.children === 'function') {
-      return this.props.children(this.state.content || null);
-    }
-    return this.state.content || null;
+    return typeof this.props.children === 'function'
+      ? this.props.children(this.state.content)
+      : this.state.content;
   }
 }
 
