@@ -13,8 +13,7 @@
   ],
   "license": "MIT",
   "files": [
-    "lib",
-    "src"
+    "lib"
   ],
   "scripts": {
     "format": "prettier --write --parser flow --single-quote ./src/*",
