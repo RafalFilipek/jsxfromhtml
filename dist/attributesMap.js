@@ -1,8 +1,9 @@
-// @flow
+'use strict';
 
-const map: {
-  [key: string]: string
-} = {
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var map = {
   accesskey: 'accessKey',
   allowfullscreen: 'allowFullScreen',
   allowtransparency: 'allowTransparency',
@@ -121,4 +122,5 @@ const map: {
   'x-height': 'xHeight'
 };
 
-export default map;
+exports.default = map;
+//# sourceMappingURL=attributesMap.js.map

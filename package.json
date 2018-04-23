@@ -1,22 +1,52 @@
 {
   "name": "jsxfromhtml",
-  "version": "1.1.0",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/RafalFilipek/jsxfromhtml.git"
+  },
+  "version": "1.2.1",
   "description": "Universal HTML to JSX compiler",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "author": "Rafał Filipek <rafal.filipek@gmail.com>",
+  "contributors": [
+    "Tyler Young <young@clearpath.org>"
+  ],
   "license": "MIT",
   "files": [
-    "lib",
-    "src"
+    "dist"
   ],
+  "directories": {
+    "lib": "dist",
+    "example": "demo",
+    "test": "tests"
+  },
   "scripts": {
     "format": "prettier --write --parser flow --single-quote ./src/*",
-    "flow-copy": "flow-copy-source src lib",
-    "compile": "babel -d ./lib src",
-    "clean": "rm -rf lib",
+    "flow-copy": "flow-copy-source src dist",
+    "compile": "babel -d ./dist src --source-maps",
+    "clean": "rimraf dist",
     "build": "npm run clean && npm run compile && npm run flow-copy",
     "precommit": "lint-staged",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "test": "jest"
+  },
+  "jest": {
+    "verbose": true,
+    "bail": true,
+    "roots": [
+      "tests"
+    ],
+    "testRegex": "/tests/.*(?:Test|Spec).js",
+    "setupFiles": [
+      "./tests/shim.js",
+      "./tests/setup.js"
+    ],
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/"
+    ]
   },
   "dependencies": {
     "htmlparser2": "^3.9.2",
@@ -26,6 +56,8 @@
     "babel-cli": "^6.23.0",
     "babel-eslint": "^7.1.1",
     "babel-preset-env": "^1.2.1",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^3.17.1",
     "eslint-plugin-react": "^6.10.0",
     "flow-bin": "^0.41.0",
@@ -35,7 +67,10 @@
     "lint-staged": "^3.4.0",
     "nwb": "^0.15.6",
     "prettier": "^0.21.0",
-    "publish-please": "^2.2.0"
+    "publish-please": "^2.2.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "rimraf": "^2.6.2"
   },
   "lint-staged": {
     "*.js": [

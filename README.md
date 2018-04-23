@@ -8,21 +8,21 @@ Like always on [now](https://now.sh) :) - [**jsxfromhtml.now.sh**](https://jsxfr
 
 ## Installation
 
-```
+```sh
 yarn add jsxfromhtml
-
-// or
-
+```
+... or ...
+```sh
 npm install -S jsxfromhtml
 ```
 
 Also for React-Native you have to install some Node specific modules
 
-```
+```sh
 yarn add stream buffer events
-
-// or
-
+```
+... or ...
+```sh
 npm install -S stream buffer events
 ```
 
@@ -35,7 +35,7 @@ Web is quite simple. All you have to do is:
 ```jsx
 const html = `<p>
   <span>text</span>
-</p>`
+</p>`;
 
 () => <JSXFromHTML html={html} />
 ```
@@ -47,7 +47,7 @@ But you can do more! `jsxfromhtml` allows you to map HTML tags into custom compo
 ```jsx
 const html = `<p>
   <a href="https://twitter.com/rafalfilipek">rafalfilipek</a>
-</p>`
+</p>`;
 
 const SuperLink = (props) => {
   const { href, children } = props;
@@ -68,11 +68,16 @@ const SuperLink = (props) => {
 () => <JSXFromHTML html={html} mapElements={{ a: SuperLink }} />
 ```
 
-With `mapElements` you can map any HTML tag into a custom componetn. In this example we want to use our `SuperLink` component to show profile picture next to the twitter username.
+With `mapElements` you can map any HTML tag into
+a custom component.
+In this example we want to use our `SuperLink` component
+to show profile picture next to the twitter username.
 
 ### Omitting
 
-Sometimes you will get tags you don't want. Like `style` or `script`. To get rid of them just map them to `false`.
+Sometimes you will get tags you don't want.
+ Like `style` or `script`.
+To get rid of them just map them to `false`.
 
 ```jsx
 const html = `<p>
@@ -83,7 +88,10 @@ const html = `<p>
 
 ### General mapping / React Native
 
-While `mapElements` is quite cool for web we have to handle all tags in native with just `Text` and `View` components. That's why there are two more props `mapInline` and `mapBlock`.
+While `mapElements` is quite cool for web we have to
+handle all tags in native with just `Text` and `View`
+components. That's why there are two more props
+`mapInline` and `mapBlock`.
 
 ```jsx
 const html = `<p>
@@ -101,11 +109,14 @@ You will get:
   </View>
 ```
 
-As you can see `jsxfromhtml` will wrap every text with is not inside inline tag.
+As you can see `jsxfromhtml` will wrap every text with
+is not inside inline tag.
 
 ### Styling
 
-Every HTML tag has some default styles. You will probaly want to mimic that in your app. Each component will get `data-tag` prop.
+Every HTML tag has some default styles.
+You will probaly want to mimic that in your app.
+Each component will get `data-tag` prop.
 
 ```jsx
 const html = '<strong>text</strong>'
@@ -124,7 +135,9 @@ const InlineElement = (props) => {
 
 ### Attributes
 
-All html attributes will be converted into proper jsx form. So `for` -> `htmlFor`, `class` -> `className` etc. You will receive them like regular props.
+All html attributes will be converted into proper jsx form.
+So `for` -> `htmlFor`, `class` -> `className` etc.
+You will receive them like regular props.
 
 ```jsx
 const html = `<a class="link" href="https://twitter.com/rafalfilipek" title="Rafał Filipek">rafalfilipek</a>`
@@ -155,18 +168,18 @@ We have `mapElement`, `mapInline`, `mapBlock` props.
 
 ## React Native inline
 
-There is no `display: inline` in React Native. You can't have two inline tags (like `Text`) in one line. The only solution I know is to wrap them with another `Text` component. This sucks:
+There is no `display: inline` in React Native.
+ You can't have two inline tags (like `Text`) in one line. The only solution I know is to wrap them with another `Text` component. This sucks:
 
-```jsx
-<span>
+```html
+<div>
   <span>one</span>
   <span>line</span>
-</span>
+</div>
 ```
 Thats why `jsxfromhtml` handles that for you 💥! We will group inline tags inside block tags and wrap them with `span` (`Text`) tag 🤙.
 
-```jsx
-//input
+```html
 <div>
   <span>one</span>
   <span>two</span>
@@ -176,15 +189,16 @@ Thats why `jsxfromhtml` handles that for you 💥! We will group inline tags ins
   </p>
   <span>five</span>
 </div>
-
-//output
+```
+Output...
+```html
 <div>
-  <span> // group
+  <span> <!-- group -->
     <span>one</span>
     <span>two</span>
   </span>
   <p>
-    <span>  // group
+    <span> <!-- group -->
       <span>three</span>
       <span>four</span>
     </span>
@@ -197,7 +211,7 @@ Thats why `jsxfromhtml` handles that for you 💥! We will group inline tags ins
 
 **Q: Is there a wrapper for my HTML?**
 
-A: Yes, always a `div` tag.
+A: Yes, always a `span` tag.
 
 **Q: How is plain text handled inside block tags?**
 
@@ -207,6 +221,23 @@ A: Text is wrapped with `span` tag.
 
 A: The root component has `data-jsx-to-html-root` prop.
 
+## Alternatives and Inspirations
+
+* [html-to-react][1] by @aknuds, it works slightly differently
+* [acorn-jsx][4] by @RReversor, React is switching to this :)
+
+The following currently have issues with React v16, but are worth a peek:
+
+* [react-jsx-parser][2] by @TroyAlford
+* [react-magic (htmltojsx)][3] by @Daniel15
+
+
+
 ## LICENSE
 
-MIT
+This module is issued under the [MIT](blob/master/LICENSE) license.
+
+[1]: https://github.com/aknuds1/html-to-react
+[2]: https://github.com/TroyAlford/react-jsx-parser
+[3]: https://github.com/reactjs/react-magic
+[4]: https://github.com/RReverser/acorn-jsx
